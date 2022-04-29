@@ -13,12 +13,15 @@ export const Textarea = ({
   borderColor,
   textSize,
   height,
-  borderRadius
+  borderRadius,
+  value,
+  onChangeText,
+
 }) => {
   return (
     <>
       <View style={style}>
-        <Text
+        {/* <Text
           style={{
             color: "black",
             alignSelf: "flex-start",
@@ -28,10 +31,12 @@ export const Textarea = ({
           }}
         >
           {text}
-        </Text>
+        </Text> */}
         <TextInput
           placeholder={placeholder}
           placeholderTextColor={placeholderColor}
+          value={value}
+          onChangeText={onChangeText}
           style={[
             styles.textInputStyle,
             { backgroundColor: color, padding: 12,width:width,borderWidth:borderWidth ,borderColor:borderColor,height:height,borderRadius:borderRadius},
