@@ -8,22 +8,23 @@ import {
 } from "react-native";
 import React from "react";
 import {Button}from "../components/Button"
-const WindowsWidth = Dimensions.get("window").width;
 
+const WindowsWidth = Dimensions.get("window").width;
 const Home = ({navigation}) => {
+ 
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../../assets/Rectangle.png")}
+        source={require("../../assets/Images/Rectangle.png")}
         style={styles.Rectangle}
       >
         <Image
-          source={require("../../assets/Group280.png")}
+          source={require("../../assets/Images/Group280.png")}
           style={styles.group}
         />
       </ImageBackground>
       <View style={styles.lowContainer}>
-        <Image source={require("../../assets/Choozley.png")} style={styles.logo}  />
+        <Image source={require("../../assets/Images/Choozley.png")} style={styles.logo}  />
         <Text style={{fontSize:22,fontWeight:"700",marginTop:27}}>Log In Or Sign Up</Text>
         <Text style={[styles.text,{width:200}]}>
           Log in to your existing account or Sign up as a User or a Freelancer

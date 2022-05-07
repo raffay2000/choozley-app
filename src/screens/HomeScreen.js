@@ -6,7 +6,7 @@ const WindowsWidth = Dimensions.get("window").width
 const HomeScreen = () => {
   return (
     <ImageBackground
-      source={require("../../assets/ChoozleyPic.png")}
+      source={require("../../assets/Images/ChoozleyPic.png")}
       style={styles.Background}
     />
   );

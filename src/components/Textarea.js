@@ -16,7 +16,8 @@ export const Textarea = ({
   borderRadius,
   value,
   onChangeText,
-
+  OnSubmitPress,
+  inputRef,
 }) => {
   return (
     <>
@@ -33,10 +34,12 @@ export const Textarea = ({
           {text}
         </Text> */}
         <TextInput
+        ref={inputRef}
           placeholder={placeholder}
           placeholderTextColor={placeholderColor}
           value={value}
           onChangeText={onChangeText}
+          onSubmitEditing={OnSubmitPress}
           style={[
             styles.textInputStyle,
             { backgroundColor: color, padding: 12,width:width,borderWidth:borderWidth ,borderColor:borderColor,height:height,borderRadius:borderRadius},
