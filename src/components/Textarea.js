@@ -22,17 +22,6 @@ export const Textarea = ({
   return (
     <>
       <View style={style}>
-        {/* <Text
-          style={{
-            color: "black",
-            alignSelf: "flex-start",
-            marginLeft: 10,
-            marginBottom: 6,
-            fontSize:textSize
-          }}
-        >
-          {text}
-        </Text> */}
         <TextInput
         ref={inputRef}
           placeholder={placeholder}
@@ -42,7 +31,7 @@ export const Textarea = ({
           onSubmitEditing={OnSubmitPress}
           style={[
             styles.textInputStyle,
-            { backgroundColor: color, padding: 12,width:width,borderWidth:borderWidth ,borderColor:borderColor,height:height,borderRadius:borderRadius},
+            { backgroundColor: color, padding: 12,width:width,borderWidth:borderWidth ,borderColor:borderColor,height:height,borderRadius:borderRadius,fontSize:textSize},
           ]}
         />
         <View style={styles.icon}>

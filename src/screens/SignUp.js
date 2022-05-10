@@ -8,6 +8,7 @@ import { setEmail, signUp } from "../redux/Actions/RegisterAction";
 import { getDateFormat } from "../utils";
 import axios from "axios";
 import SnackBar from "../components/SnackBar";
+import FormData from "form-data";
 
 const SignUp = ({ navigation }) => {
   let UserNameRef,EmailRef,PassRef;
@@ -28,10 +29,11 @@ const SignUp = ({ navigation }) => {
   const [show, setShow] = useState(false);
   const [dob, setDob] = useState('');
   const onChange = (event, seletedDate) => {
-    const curruntDate = seletedDate || dob;
+    let curruntDate = seletedDate || dob;
     setShow(Platform.OS === "ios");
     setDob(curruntDate);
-    console.log('date', curruntDate, dob)
+    console.log('date', curruntDate,dob)
+
   };
 
   const SignUp = async () => {
@@ -45,44 +47,44 @@ const SignUp = ({ navigation }) => {
       setErr(true);
     } else {
       Keyboard.dismiss()
-      dispatch(signUp(full_name,email,username,password,dob))
-      // setIsLoading(true);
+      dispatch(signUp(full_name,email,username,password,getDateFormat(dob)))
+      setIsLoading(true);
       
-      // // console.log(data1);
-      // var data1 = new FormData();
-      //   data1.append("email", email);
-      //   data1.append("username", username);
-      //   data1.append("full_name", full_name);
-      //   data1.append("dob", dob);
-      //   data1.append("password", password);
-      // const config = {
-      //   method: "post",
-      //   url: "https://webdesignpreviews.com/custom/storyshare/public/api/register",
-      //   headers: {
-      //     //  "Content-Type": "multipart/form-data" ,
-      //      "Content-Type": "application/x-www-form-urlencoded"
-      //     //  "Accept":"multipart/form-data",
-      //     },
-      //   body: JSON.stringify(data1),
-      // };
-      // // console.log(config)
-      //   // fetch("https://webdesignpreviews.com/custom/storyshare/public/api/register",config).then(response=>response.json()).then(data=>console.log(data)).catch(err=>console.log(err))
-      // try {
-      //   const data = await axios(config);
-      //   console.log(data.data)
-      //   if (data.data.success == true) {
-      //   setIsLoading(false);
-      //   alert(data.data.message);
-      //   navigation.navigate("Login");
-      //   }else {
-      //   alert(data.data.message);
-      //   setIsLoading(false);
-      //   }
+    //   var data1 = new FormData();
+    //   data1.append("email", email);
+    //   data1.append("username", username);
+    //   data1.append("full_name", full_name);
+    //   data1.append("dob", getDateFormat(dob));
+    //   data1.append("password", password);
+
+    //   const config = {
+    //     method: "post",
+    //     url: "https://webdesignpreviews.com/custom/storyshare/public/api/register",
+    //     headers: {
+    //        'Content-Type': 'multipart/form-data' ,
+    //       //  "Content-Type": "application/x-www-form-urlencoded"
+    //       //  "Accept":"multipart/form-data",
+    //       },
+    //     data: data1
+    //   };
+
+    //   console.log(config); 
+    //   try {
+    //     const data = await axios(config);
+    //     console.log(data.data)
+    //     if (data.data.success == true) {
+    //     setIsLoading(false);
+    //     alert(data.data.message);
+    //     navigation.navigate("Login");
+    //     }else {
+    //     alert(data.data.message);
+    //     setIsLoading(false);
+    //     }
         
-      //   }   catch (error) {
-      //     setIsLoading(false)
-      //     console.log(error)
-      //   }
+    //     }   catch (error) {
+    //       setIsLoading(false)
+    //       console.log(error)
+    //     }
     }
   };
   return (

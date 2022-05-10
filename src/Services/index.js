@@ -17,21 +17,24 @@ export const fetchAPI = async (
   method,
   api,
   data,
-  headers = null,
+  headers,
   params = null
 ) => {
-  
-
   const url = `${BASE_URL}/public/api/${api}`;
   const config = {
     method, // *GET, POST, PUT, DELETE, etc.
     headers,
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
+    // :{
+      // 'Content-Type': 'application/json',
+      // 'Content-Type':'application/x-www-form-urlencoded',
+      // "Accept":"application/json"
+      // },
+    body: data, // body data type must match "Content-Type" header
   };
   if (headers) {
     // alert("inside Heade")
     config.headers.Authorization = "Bearer " + (await getToken());
   }
-  // console.log(config)
+  console.log(config)
   return await fetch(url, config);
 };
