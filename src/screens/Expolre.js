@@ -1,35 +1,13 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { Textarea } from "../components/Textarea";
-import { FontAwesome } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
 import Thumbnail from "../components/Thumbnail";
-
+import SearchArea from "../components/SearchArea"
 const Expolre = () => {
+
   return (
     <>
-      <View style={styles.header}>
-        <View style={styles.searchArea}>
-          <View>
-            <Textarea
-              borderRadius={100}
-              color={"white"}
-              height={hp("4.8%")}
-              width={hp("32%")}
-              placeholder={"Search services"}
-              placeholderColor={"#BBBCC5"}
-              textSize={10}
-            />
-          </View>
-          <View>
-            <FontAwesome name="filter" size={24} color="white" />
-          </View>
-          <View>
-            <Ionicons name="notifications" size={24} color="white" />
-          </View>
-        </View>
-      </View>
+      <SearchArea/>
       <View>
         <Text
           style={{
@@ -41,8 +19,9 @@ const Expolre = () => {
         >
           Popular Services
         </Text>
+        
         <ScrollView>
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+          <View  style={{ flexDirection: "row", flexWrap: "wrap" }}>
             <Thumbnail
               decs={"I will create minimalist and business logo design for you"}
               price={"$300"}

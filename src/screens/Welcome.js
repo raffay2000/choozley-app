@@ -80,7 +80,7 @@ const Welcome = () => {
           </Text>
         </View>
         <ScrollView>
-        <ScrollView horizontal  >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} >
           <Thumbnail
             decs={"I will create minimalist and business logo design for you"}
             price={"$200"}
@@ -109,7 +109,7 @@ const Welcome = () => {
             view all
           </Text>
         </View>
-        <ScrollView horizontal  >
+        <ScrollView horizontal  showsHorizontalScrollIndicator={false}>
           <Thumbnail
             decs={"I will create minimalist and business logo design for you"}
             price={"$200"}
