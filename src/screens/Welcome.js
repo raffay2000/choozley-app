@@ -7,6 +7,8 @@ import {
   Image,
   FlatList,
   ScrollView,
+  TouchableOpacity,
+  Animated,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { removeItem } from "../persist-storage";
@@ -17,16 +19,20 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import Thumbnail from "../components/Thumbnail";
 
+// import {
+//   SharedElement
+// } from "react-navigation-shared-element";
+
 const WindowsWidth = Dimensions.get("window").width;
 
-const Welcome = () => {
-  const context = useContext(AuthContext);
-  const Logout = async () => {
-    await removeItem("user");
-    await removeItem("token");
-    context.updateState();
-  };
-
+const Welcome = ({ navigation }) => {
+  // const context = useContext(AuthContext);
+  // const Logout = async () => {
+  //   await removeItem("user");
+  //   await removeItem("token");
+  //   context.updateState();
+  // };
+ const uid = 0
   return (
     <>
       <ImageBackground style={styles.imageBackground}>
@@ -66,66 +72,89 @@ const Welcome = () => {
           </View>
         </View>
       </ImageBackground>
-      <View style={styles.container}>
-        <View
-          style={styles.heading}
-        >
-          <Text
-            style={styles.Text}
-          >
-            Digital Services
-          </Text>
+      <View
+        style={styles.container}
+      >
+        <View style={styles.heading}>
+          <Text style={styles.Text}>Digital Services</Text>
           <Text style={{ fontSize: 12, color: "#323B6E", fontWeight: "bold" }}>
             view all
           </Text>
         </View>
         <ScrollView>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} >
-          <Thumbnail
-            decs={"I will create minimalist and business logo design for you"}
-            price={"$200"}
-            imageSource={require("../../assets/Images/MaskGroup.png")}
-          />
-          <Thumbnail
-            decs={"I will create minimalist and business logo design for you"}
-            price={"$300"}
-            imageSource={require("../../assets/Images/MaskGroup10.png")}
-          />
-          <Thumbnail
-            decs={"I will create minimalist and business logo design for you"}
-            price={"$300"}
-            imageSource={require("../../assets/Images/MaskGroup12.png")}
-          />
-        </ScrollView>
-        <View
-          style={styles.heading}
-        >
-          <Text
-            style={styles.Text}
-          >
-            Local Services
-          </Text>
-          <Text style={{ fontSize: 12, color: "#323B6E", fontWeight: "bold" }}>
-            view all
-          </Text>
-        </View>
-        <ScrollView horizontal  showsHorizontalScrollIndicator={false}>
-          <Thumbnail
-            decs={"I will create minimalist and business logo design for you"}
-            price={"$200"}
-            imageSource={require("../../assets/Images/MaskGroup.png")}
-          />
-          <Thumbnail
-            decs={"I will create minimalist and business logo design for you"}
-            price={"$300"}
-            imageSource={require("../../assets/Images/MaskGroup11.png")}
-          />
-          <Thumbnail
-            decs={"I will create minimalist and business logo design for you"}
-            price={"$300"}
-            imageSource={require("../../assets/Images/MaskGroup1000.png")}
-          />
-        </ScrollView>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Manage Jobs",{uid});
+              }}
+            >
+
+                <Thumbnail
+                  decs={
+                    "I will create minimalist and business logo design for you"
+                  }
+                  price={"$200"}
+                  imageSource={require("../../assets/Images/MaskGroup.png")}
+                />
+               
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Thumbnail
+                decs={
+                  "I will create minimalist and business logo design for you"
+                }
+                price={"$300"}
+                imageSource={require("../../assets/Images/MaskGroup10.png")}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Thumbnail
+                decs={
+                  "I will create minimalist and business logo design for you"
+                }
+                price={"$300"}
+                imageSource={require("../../assets/Images/MaskGroup12.png")}
+              />
+            </TouchableOpacity>
+          </ScrollView>
+          <View style={styles.heading}>
+            <Text style={styles.Text}>Local Services</Text>
+            <Text
+              style={{ fontSize: 12, color: "#323B6E", fontWeight: "bold" }}
+            >
+              view all
+            </Text>
+          </View>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <TouchableOpacity>
+              <Thumbnail
+                decs={
+                  "I will create minimalist and business logo design for you"
+                }
+                price={"$200"}
+                imageSource={require("../../assets/Images/MaskGroup.png")}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Thumbnail
+                decs={
+                  "I will create minimalist and business logo design for you"
+                }
+                price={"$300"}
+                imageSource={require("../../assets/Images/MaskGroup11.png")}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Thumbnail
+                decs={
+                  "I will create minimalist and business logo design for you"
+                }
+                price={"$300"}
+                imageSource={require("../../assets/Images/MaskGroup1000.png")}
+              />
+            </TouchableOpacity>
+          </ScrollView>
         </ScrollView>
         {/* <Text style={{ fontSize: 20 }}> Welcome </Text>
         <Button
@@ -147,7 +176,7 @@ export default Welcome;
 
 const styles = StyleSheet.create({
   // container: {
-   
+
   // },
   header: {
     flexDirection: "row",
@@ -174,16 +203,16 @@ const styles = StyleSheet.create({
     position: "relative",
     top: -10,
   },
-  heading:{
+  heading: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 30,
     paddingTop: 10,
   },
-  Text:{
+  Text: {
     fontSize: 15,
     color: "#323B6E",
     fontWeight: "bold",
     alignSelf: "flex-start",
-  }
+  },
 });

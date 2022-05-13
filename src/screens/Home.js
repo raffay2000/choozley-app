@@ -46,16 +46,12 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor:"#323B6E",
-    // justifyContent:'center',
-    // alignItems:'center'
   },
   Rectangle: {
     width: WindowsWidth,
     height: 338,
     resizeMode: "contain",
     alignItems: "center",
-    // justifyContent: "center",
   },
   group: {
     width: 321,
@@ -83,6 +79,5 @@ const styles = StyleSheet.create({
     fontSize:11,
     marginTop:6,
     color:"#6A6A6A"
-
   }
 });

@@ -24,18 +24,10 @@ import {
 import Chats from "../screens/Chats";
 import ManageJobs from "../screens/ManageJobs";
 
-function Settings2() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings 2!</Text>
-    </View>
-  );
-}
 const Tab = createBottomTabNavigator();
 
 const TabBarBtn = (props) => {
   const { item, onPress, accessibilityState } = props;
-
   const focused = accessibilityState.selected;
   const viewRef = useRef(null);
   const circleRef = useRef(null);
@@ -43,12 +35,9 @@ const TabBarBtn = (props) => {
 
   const circle1 = {
     0: { scale: 0 },
-    // 0.3: { scale: 0.3 },
-    // 0.5: { scale: 0.5 },
-    // 0.8: { scale: 0.8 },
     1: { scale: 1.25 },
   };
-  const circle2 = { 0: { scale: 1 }, 1: { scale: 0 } };
+  const circle2 = { 0: { scale: 1 }, 1: { scale: 0 }};
 
   useEffect(() => {
     if (focused) {
@@ -100,7 +89,7 @@ const TabBarBtn = (props) => {
   );
 };
 
-const TabArr = [
+export const TabArr = [
   {
     route: "HOME",
     label: "Home",
@@ -147,6 +136,7 @@ export default function App() {
   return (
     <Tab.Navigator
       screenOptions={{
+        
         tabBarStyle: {
           height: hp("11%"),
           borderTopWidth: 0,

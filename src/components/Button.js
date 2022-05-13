@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity ,ActivityIndicator} from "react-native";
-import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export const Button = ({
   color,

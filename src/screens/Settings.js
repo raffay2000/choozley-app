@@ -14,6 +14,9 @@ const Settings = ({navigation}) => {
     await removeItem("token");
     context.updateState();
   };
+  const NewComponent = async () => {
+    navigation.navigate('New')
+  };
   const viewRef = React.useRef(null);
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -60,10 +63,12 @@ const Settings = ({navigation}) => {
           </Text>
         </View>
         <View style={styles.options}>
-          <MaterialIcons name="policy" size={34} color="#323B6E" />
+        <TouchableOpacity style={{flexDirection:"row"}} onPress={()=>{NewComponent()}}>
+          <MaterialIcons name="policy" size={34} color="#323B6E"   />
           <Text style={{ marginLeft: 20, fontSize: 20, color: "#323B6E" }}>
             Privacy & Policy
           </Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.options}>
           <TouchableOpacity style={{flexDirection:"row"}} onPress={()=>{Logout()}}>

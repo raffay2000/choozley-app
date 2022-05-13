@@ -9,7 +9,7 @@ const Thumbnail = ({decs,price,imageSource}) => {
       <View style={{ flex: 2 }}>
         <ImageBackground
           source={imageSource}
-          style={{ height: "100%" }}
+          style={{ height: "100%"}}
         >
             <View style={{flexDirection:"row",justifyContent:"space-between" ,paddingHorizontal:10,paddingTop:5}}>
             <AntDesign name="star" size={18} color="#D1D112" />
@@ -29,7 +29,7 @@ const Thumbnail = ({decs,price,imageSource}) => {
             alignSelf: "center",
           }}
         />
-        <Text style={{ textAlign: "center", marginVertical: 7 ,fontWeight:"bold"}}>
+        <Text style={{textAlign: "center", marginVertical: 7,fontWeight:"bold"}}>
           Starting from {price}
         </Text>
       </View>
