@@ -8,15 +8,12 @@ export const Animations = [
     "fadeInLeftBig",
     "fadeInRight",
     "fadeInRightBig",
-  
     "flipInX",
     "flipInY",
-   
     "slideInDown",
     "slideInUp",
     "slideInLeft",
     "slideInRight",
-    
     "zoomIn",
     "zoomInDown",
     "zoomInUp",

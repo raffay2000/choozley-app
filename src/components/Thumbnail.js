@@ -1,12 +1,30 @@
-import { StyleSheet, Text, View,ImageBackground } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View,ImageBackground,Pressable,Dimensions,TouchableOpacity } from "react-native";
+import React,{useRef} from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { AntDesign } from '@expo/vector-icons';
 
-const Thumbnail = ({decs,price,imageSource}) => {
+const Thumbnail = ({decs,price,imageSource,onPress1}) => {
+  const {width,height } = Dimensions.get("window")
+  const CustomImage = ({ source, onPress }) => {
+    const imageRef = useRef();
+    const onImagePress = () => {
+      imageRef.current?.measure?.((x, y, width, height, pageX, pageY) => {
+        onPress &&
+          onPress(source.uri, { width, height, pageX, pageY, borderRadius: 10 });
+      });
+    };
+    return (
+      <>
+        <Pressable onPress={onImagePress}>
+          <ImageBackground ref={imageRef} source={source} style={{height:"100%"}} />
+        </Pressable>
+      </>
+    );
+  };
   return (
     <View style={styles.component}>
       <View style={{ flex: 2 }}>
+        <Pressable onPress={onPress1}>
         <ImageBackground
           source={imageSource}
           style={{ height: "100%"}}
@@ -16,6 +34,8 @@ const Thumbnail = ({decs,price,imageSource}) => {
             <AntDesign name="heart" size={18} color="#D4D1D1" />
             </View>
         </ImageBackground>
+        </Pressable>
+        
       </View>
       <View style={{ flex: 1.5, backgroundColor: "white" }}>
         <Text style={{ fontSize: 12, textAlign: "center", marginVertical: 10 }}>

@@ -5,14 +5,11 @@ import {
   ImageBackground,
   Dimensions,
   Image,
-  FlatList,
   ScrollView,
   TouchableOpacity,
-  Animated,
+  Pressable
 } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
-import { removeItem } from "../persist-storage";
-import { AuthContext } from "../context";
+import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Textarea } from "../components/Textarea";
 import { FontAwesome } from "@expo/vector-icons";
@@ -26,13 +23,13 @@ import Thumbnail from "../components/Thumbnail";
 const WindowsWidth = Dimensions.get("window").width;
 
 const Welcome = ({ navigation }) => {
-  // const context = useContext(AuthContext);
-  // const Logout = async () => {
-  //   await removeItem("user");
-  //   await removeItem("token");
-  //   context.updateState();
-  // };
- const uid = 0
+  const onImagePress = (uri, imageSpecs) => {
+    navigation.navigate("Manage Jobs", {
+      uri,
+      imageSpecs,
+    });
+    console.log(uri,imageSpecs)
+  };
   return (
     <>
       <ImageBackground style={styles.imageBackground}>
@@ -83,22 +80,14 @@ const Welcome = ({ navigation }) => {
         </View>
         <ScrollView>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("Manage Jobs",{uid});
-              }}
-            >
-
                 <Thumbnail
                   decs={
                     "I will create minimalist and business logo design for you"
                   }
                   price={"$200"}
                   imageSource={require("../../assets/Images/MaskGroup.png")}
+                  onPress1={onImagePress}
                 />
-               
-            </TouchableOpacity>
-
             <TouchableOpacity>
               <Thumbnail
                 decs={

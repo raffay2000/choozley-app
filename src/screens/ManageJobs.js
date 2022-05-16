@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  Animated,
+  // Animated,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import SearchArea from "../components/SearchArea";
@@ -13,25 +13,46 @@ import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import ShowText from "../components/ShowText";
 import * as Animatable from "react-native-animatable";
-// import {
-//   SharedElement
-// } from "react-navigation-shared-element";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming
+} from 'react-native-reanimated';
 
-const ManageJobs = ({ navigation }) => {
+
+const ManageJobs = ({ navigation ,route}) => {
+  const { uri,imageSpecs } = route.params;
+  const anim = useSharedValue(0);
   // const viewRef = useRef(null);
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener("focus", () => {
-  //     viewRef.current.animate({
-  //       0: { opacity: 0,translateX:1000,fade:0.5 },
-  //       0.3: { opacity: 0.3,translateX:800 },
-  //       0.5: { opacity: 0.5,translateX:600  },
-  //       0.8: { opacity: 0.7,translateX:300},
-  //       1: { opacity: 1, translateX:0,fade:1 },
-  //     });
-  //   });
-  //   return () => unsubscribe;
-  // }, [navigation]);
-
+  useEffect(() => {
+     //reset to zero
+     anim.value = 0;
+     //start animation
+     anim.value = withTiming(1,{duration:1000});
+    // const unsubscribe = navigation.addListener("focus", () => {
+    //   viewRef.current.animate({
+    //     0: { opacity: 0,translateX:1000,fade:0.5 },
+    //     0.3: { opacity: 0.3,translateX:800 },
+    //     0.5: { opacity: 0.5,translateX:600  },
+    //     0.8: { opacity: 0.7,translateX:300},
+    //     1: { opacity: 1, translateX:0,fade:1 },
+    //   });
+    // });
+    // return () => unsubscribe;
+  }, []);
+  const imageContainerStyle = useAnimatedStyle(
+    () => ({
+      position: 'absolute',
+      top: interpolate(anim.value, [0, 1], [imageSpecs.pageY, 70]),
+      left: interpolate(anim.value, [0, 1], [imageSpecs.pageX, 0]),
+      width: interpolate(anim.value, [0, 1], [imageSpecs.width, width]),
+      height: interpolate(anim.value, [0, 1], [imageSpecs.height, 250]),
+      // borderRadius: interpolate(anim.value, [0, 1], [imageSpecs.borderRadius, 0]),
+      // overflow: 'hidden'
+    }),
+    []
+  );
   const [img, setImg] = useState(require("../../assets/Images/MaskGroup.png"));
   const position = new Animated.Value(0);
   return (
@@ -77,6 +98,7 @@ const ManageJobs = ({ navigation }) => {
                 // resize='auto'
                 // align='auto'
               /> */}
+              <Animatable.View>
               <Image
                 source={img}
                 style={{
@@ -87,6 +109,7 @@ const ManageJobs = ({ navigation }) => {
                   borderRadius: 2,
                 }}
               />
+              </Animatable.View>
             {/* </View> */}
             {/* <View > */}
 

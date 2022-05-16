@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import Home from "../screens/Home";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/Login";
 import SignUp from "../screens/SignUp";
@@ -14,7 +14,7 @@ import { isReadyRef, navigationRef } from "../navigation";
 import MainRoutes from './MainRoutes'
 import New from "../screens/New";
 import New2 from "../screens/New2";
-// import {createSharedElementStackNavigator} from "react-navigation-shared-element/build/v4"
+// import {createSharedElementStackNavigator} from "react-navigation-shared-element"
 
 const Stack = createNativeStackNavigator();
 // const Stack = createSharedElementStackNavigator();
@@ -55,7 +55,6 @@ const Routes = () => {
   if(isSignIn === null){
     return <AuthScreen/>
 }
-
   return (
     <>
       <AuthContext.Provider value={{ updateState: checkToken }}>
@@ -65,17 +64,23 @@ const Routes = () => {
         onReady={() => {
             isReadyRef.current = true;
         }}
+
         >
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Navigator screenOptions={{ headerShown: false}}>
             {isSignIn ? 
               <>
-                <Stack.Screen name="MainRoutes" component={MainRoutes} />
+                <Stack.Screen name="MainRoutes" component={MainRoutes} options={{}}/>
                 <Stack.Screen name="New" component={New} />
-                <Stack.Screen name="New2" component={New2} 
-                // sharedElements={(route)=>{
-                //   return [route.params.uid]}}
-                />
-
+                <Stack.Screen name="New2" component={New2} options={{animation:"none"}}
+          //       options={{
+          //         cardStyleInterpolator: ({current: {progress}}) => ({
+          //     cardStyle: {
+          //       opacity: progress,
+          //     },
+          //     useNativeDriver: true,
+          //   }),
+          // }}
+          />
               </>
              :
               <>
