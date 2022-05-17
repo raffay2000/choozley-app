@@ -1,14 +1,11 @@
 import {
   Dimensions,
-  Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   View,
-  Animated,
 } from "react-native";
-import React, { useRef } from "react";
-import CustomImage from '../components/ImageAnimation.js'
+import React from "react";
+import CustomImage from '../components/ImageAnimation'
 
 // list of image uris
 const images = [
@@ -18,16 +15,14 @@ const images = [
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLKqtPopwbYPiCjLq6hkMjorpmORRR9apUC2Uy7eiYnl9ij9Cczi0RCz3xUKXvYQrE3g&usqp=CAU",
 ];
 const New = ({ navigation }) => {
+
   const onImagePress = (uri, imageSpecs) => {
-    // console.log({
-    //   uri,
-    //   imageSpecs,
-    // });
     navigation.navigate("New2", {
       uri,
       imageSpecs
     });
   };
+
   return (
     <ScrollView style={{ flex: 1 }}>
       <View>
@@ -39,25 +34,9 @@ const New = ({ navigation }) => {
   );
 };
 export default New;
-// const CustomImage = ({ source, onPress }) => {
-//   const imageRef = useRef();
-//   const onImagePress = () => {
-//     imageRef.current?.measure?.((x, y, width, height, pageX, pageY) => {
-//       onPress &&
-//       // alert(pageY)
-//         onPress(source.uri, { width, height, pageX, pageY, borderRadius: 10 });
-//     });
-//   };
-//   return (
-//     <>
-//       <Pressable onPress={onImagePress}>
-//         <Image ref={imageRef} source={source} style={styles.image} />
-//       </Pressable>
-//     </>
-//   );
-// };
 
 const { width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   image: {
     width: width - 300,

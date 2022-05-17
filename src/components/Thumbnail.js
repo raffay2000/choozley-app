@@ -2,38 +2,25 @@ import { StyleSheet, Text, View,ImageBackground,Pressable,Dimensions,TouchableOp
 import React,{useRef} from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { AntDesign } from '@expo/vector-icons';
+import CustomImage from "./ImageAnimation";
 
 const Thumbnail = ({decs,price,imageSource,onPress1}) => {
-  const {width,height } = Dimensions.get("window")
-  const CustomImage = ({ source, onPress }) => {
-    const imageRef = useRef();
-    const onImagePress = () => {
-      imageRef.current?.measure?.((x, y, width, height, pageX, pageY) => {
-        onPress &&
-          onPress(source.uri, { width, height, pageX, pageY, borderRadius: 10 });
-      });
-    };
-    return (
-      <>
-        <Pressable onPress={onImagePress}>
-          <ImageBackground ref={imageRef} source={source} style={{height:"100%"}} />
-        </Pressable>
-      </>
-    );
-  };
+  // const {width,height } = Dimensions.get("window")
   return (
     <View style={styles.component}>
       <View style={{ flex: 2 }}>
         <Pressable onPress={onPress1}>
-        <ImageBackground
+        <CustomImage
           source={imageSource}
-          style={{ height: "100%"}}
-        >
-            <View style={{flexDirection:"row",justifyContent:"space-between" ,paddingHorizontal:10,paddingTop:5}}>
+          onPress={onPress1}
+          imageStyle={{height:100,width:150}}
+          // style={{ height: "100%"}}
+        />
+            {/* <View style={{flexDirection:"row",justifyContent:"space-between" ,paddingHorizontal:10,paddingTop:5}}>
             <AntDesign name="star" size={18} color="#D1D112" />
             <AntDesign name="heart" size={18} color="#D4D1D1" />
-            </View>
-        </ImageBackground>
+            </View> */}
+        {/* </CustomImage> */}
         </Pressable>
         
       </View>

@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  // Animated,
+  Dimensions
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import SearchArea from "../components/SearchArea";
@@ -20,49 +20,33 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated';
 
-
 const ManageJobs = ({ navigation ,route}) => {
+  const {width} =Dimensions.get("window")
   const { uri,imageSpecs } = route.params;
+  console.log(uri,imageSpecs)
+  // console.log({ uri, imageSpecs });
   const anim = useSharedValue(0);
-  // const viewRef = useRef(null);
   useEffect(() => {
      //reset to zero
      anim.value = 0;
      //start animation
      anim.value = withTiming(1,{duration:1000});
-    // const unsubscribe = navigation.addListener("focus", () => {
-    //   viewRef.current.animate({
-    //     0: { opacity: 0,translateX:1000,fade:0.5 },
-    //     0.3: { opacity: 0.3,translateX:800 },
-    //     0.5: { opacity: 0.5,translateX:600  },
-    //     0.8: { opacity: 0.7,translateX:300},
-    //     1: { opacity: 1, translateX:0,fade:1 },
-    //   });
-    // });
-    // return () => unsubscribe;
   }, []);
   const imageContainerStyle = useAnimatedStyle(
     () => ({
       position: 'absolute',
-      top: interpolate(anim.value, [0, 1], [imageSpecs.pageY, 70]),
+      top: interpolate(anim.value, [0, 1], [imageSpecs.pageY, 50]),
       left: interpolate(anim.value, [0, 1], [imageSpecs.pageX, 0]),
-      width: interpolate(anim.value, [0, 1], [imageSpecs.width, width]),
-      height: interpolate(anim.value, [0, 1], [imageSpecs.height, 250]),
-      // borderRadius: interpolate(anim.value, [0, 1], [imageSpecs.borderRadius, 0]),
-      // overflow: 'hidden'
+      width: interpolate(anim.value, [0, 1], [imageSpecs.width, "95%"]),
+      height: interpolate(anim.value, [0, 1], [imageSpecs.height, 200]),
     }),
     []
   );
-  const [img, setImg] = useState(require("../../assets/Images/MaskGroup.png"));
-  const position = new Animated.Value(0);
+  const [img, setImg] = useState({uri});
   return (
     <View >
       <SearchArea />
-      <Animatable.View
-      // style={{marginBottom:250}}
-      // ref={viewRef}
-      // easing={"ease-in"}
-      // duration={1000}
+      <View
       >
         <ScrollView style={{marginBottom:250}}>
           <View
@@ -86,19 +70,14 @@ const ManageJobs = ({ navigation ,route}) => {
               />
             </View>
           </View>
-          <View style={{ alignItems: "center" }}>
-            {/* <View style={StyleSheet.absoluteFill}> */}
-              {/* <SharedElementTransition
-                end={{
-                  node: endNode,
-                  ancestor: endAncestor,
-                }}
-                // position={position}
-                // animation='move'
-                // resize='auto'
-                // align='auto'
-              /> */}
-              <Animatable.View>
+          <Animated.View style={[
+            styles.imageContainer, 
+                imageContainerStyle
+                ]}
+                >
+            {/* <Animatable.View style={[styles.imageContainer, 
+                imageContainerStyle
+                ]}> */}
               <Image
                 source={img}
                 style={{
@@ -106,16 +85,10 @@ const ManageJobs = ({ navigation ,route}) => {
                   width: "95%",
                   resizeMode: "stretch",
                   marginTop: 15,
-                  borderRadius: 2,
+                  borderRadius: 10,
                 }}
               />
-              </Animatable.View>
-            {/* </View> */}
-            {/* <View > */}
-
-            {/* <SharedElement onNode={node => endNode = node}> */}
-            {/* </SharedElement> */}
-            {/* </View> */}
+              {/* </Animatable.View> */}
             <View
               style={{
                 flexDirection: "row",
@@ -160,7 +133,7 @@ const ManageJobs = ({ navigation ,route}) => {
             </View>
             <ShowText Text1={"Pricing"} Text2={"$ 200"} />
             <ShowText Text1={"Delivery"} Text2={"2/3 Days"} />
-          </View>
+          </Animated.View>
           <View style={{ marginLeft: 15 }}>
             <Text
               style={{
@@ -219,7 +192,7 @@ const ManageJobs = ({ navigation ,route}) => {
             </View>
           </View>
         </ScrollView>
-      </Animatable.View>
+      </View>
     </View>
   );
 };
@@ -230,4 +203,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  imageContainer:{
+    alignItems:"center"
+  }
 });

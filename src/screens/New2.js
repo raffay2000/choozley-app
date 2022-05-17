@@ -48,13 +48,6 @@ const New2 = ({ route, navigation }) => {
 };
 export default New2;
 
-New2.sharedElement= route =>{
-  const {uri} = route.params;
-  return [{
-    id:`uri.${uri}.image`
-  }]
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

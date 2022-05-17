@@ -15,6 +15,9 @@ import Icon from "../components/Icon";
 import Expolre from "../screens/Expolre";
 import Settings from "../screens/Settings";
 import * as Animatable from "react-native-animatable";
+import {  createStackNavigator} from '@react-navigation/native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import {
   Entypo,
   MaterialIcons,
@@ -23,8 +26,10 @@ import {
 } from "@expo/vector-icons";
 import Chats from "../screens/Chats";
 import ManageJobs from "../screens/ManageJobs";
+import Home from "../screens/Home";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const TabBarBtn = (props) => {
   const { item, onPress, accessibilityState } = props;
@@ -96,7 +101,7 @@ export const TabArr = [
     type: Entypo,
     activeIcon: "home",
     inActiveIcon: "home",
-    component: Welcome,
+    component: HomeStack,
   },
   {
     route: "EXPOLRE",
@@ -106,14 +111,14 @@ export const TabArr = [
     inActiveIcon: "explore",
     component: Expolre,
   },
-  {
-    route: "Manage Jobs",
-    label: "Manage Jobs",
-    type: FontAwesome,
-    activeIcon: "briefcase",
-    inActiveIcon: "briefcase",
-    component: ManageJobs,
-  },
+  // {
+  //   route: "Manage Jobs",
+  //   label: "Manage Jobs",
+  //   type: FontAwesome,
+  //   activeIcon: "briefcase",
+  //   inActiveIcon: "briefcase",
+  //   component: ManageJobs,
+  // },
   {
     route: "CHATS",
     label: "Chats",
@@ -131,6 +136,17 @@ export const TabArr = [
     component: Settings,
   },
 ];
+
+
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={Welcome}>
+      <Stack.Screen name="Home" component={Welcome}  />
+      <Stack.Screen name="Manage Jobs" component={ManageJobs} />
+    </Stack.Navigator>
+  );
+}
+
 
 export default function App() {
   return (
